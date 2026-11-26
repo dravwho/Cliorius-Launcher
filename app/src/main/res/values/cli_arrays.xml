@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cli_lang_entries">
+        <item>Ikuti sistem</item>
+        <item>Bahasa Indonesia</item>
+        <item>English</item>
+        <item>中文 (简体)</item>
+        <item>中文 (繁體)</item>
+        <item>日本語</item>
+        <item>한국어</item>
+        <item>Deutsch</item>
+        <item>Français</item>
+        <item>Español</item>
+        <item>Português</item>
+        <item>Русский</item>
+        <item>العربية</item>
+        <item>Türkçe</item>
+        <item>Tiếng Việt</item>
+        <item>ไทย</item>
+        <item>Italiano</item>
+        <item>Nederlands</item>
+        <item>Polski</item>
+        <item>Українська</item>
+    </string-array>
+    <string-array name="cli_lang_values">
+        <item>system</item>
+        <item>in</item>
+        <item>en</item>
+        <item>zh-CN</item>
+        <item>zh-TW</item>
+        <item>ja</item>
+        <item>ko</item>
+        <item>de</item>
+        <item>fr</item>
+        <item>es</item>
+        <item>pt</item>
+        <item>ru</item>
+        <item>ar</item>
+        <item>tr</item>
+        <item>vi</item>
+        <item>th</item>
+        <item>it</item>
+        <item>nl</item>
+        <item>pl</item>
+        <item>uk</item>
+    </string-array>
+</resources>

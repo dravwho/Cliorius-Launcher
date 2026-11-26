@@ -1,0 +1,91 @@
+<resources>
+    <style name="AppTheme" parent="@style/Theme.AppCompat.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:statusBarColor">@color/background_status_bar</item>
+        <item name="android:navigationBarColor">@color/background_bottom_bar</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="preferenceTheme">@style/CliPreferenceTheme</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="colorControlActivated">@color/accent</item>
+        <item name="colorControlNormal">@color/secondary_text</item>
+    </style>
+
+    <style name="ThickDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/_1sdp</item>
+        <item name="android:background">@color/divider</item>
+    </style>
+
+    <!-- ===== Tema Preference modern (Settings) ===== -->
+    <style name="CliPreferenceTheme" parent="@style/PreferenceThemeOverlay.v14.Material">
+        <item name="android:textColorPrimary">@color/primary_text</item>
+        <item name="android:textColorSecondary">@color/secondary_text</item>
+        <item name="android:textColorTertiary">@color/tertiary_text</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorControlActivated">@color/accent</item>
+        <item name="colorControlNormal">@color/secondary_text</item>
+        <item name="preferenceCategoryTitleTextColor">@color/accent</item>
+        <item name="android:background">@color/background_app</item>
+        <item name="seekBarPreferenceStyle">@style/CliSeekBarPreference</item>
+        <item name="switchPreferenceCompatStyle">@style/CliSwitchPreference</item>
+        <item name="switchPreferenceStyle">@style/CliSwitchPreference</item>
+        <item name="preferenceStyle">@style/CliPreference</item>
+        <item name="android:listDivider">@null</item>
+    </style>
+
+    <style name="CliSeekBarPreference" parent="@style/Preference.SeekBarPreference.Material">
+        <item name="android:layout">@layout/cli_preference_seekbar</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="CliSwitchPreference" parent="@style/Preference.SwitchPreferenceCompat.Material">
+        <item name="android:layout">@layout/cli_preference_row</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="CliPreferenceCategory" parent="@style/Preference.Category.Material">
+        <item name="android:layout">@layout/cli_preference_category</item>
+        <item name="android:textColor">@color/accent</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
+        <item name="android:letterSpacing">0.14</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="CliPreference" parent="@style/Preference.Material">
+        <item name="android:layout">@layout/cli_preference_row</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="CliListPreference" parent="@style/Preference.Material">
+        <item name="android:layout">@layout/cli_preference_row</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="CliEditTextPreference" parent="@style/Preference.Material">
+        <item name="android:layout">@layout/cli_preference_row</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="CliContributor">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/_5sdp</item>
+        <item name="android:paddingBottom">@dimen/_5sdp</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+    </style>
+
+    <style name="CliSectionLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/tertiary_text</item>
+        <item name="android:textSize">@dimen/_9ssp</item>
+        <item name="android:letterSpacing">0.16</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+</resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_8sdp"
+    android:background="@drawable/cli_menu_card"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/_12sdp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/catalog_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_13ssp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/catalog_item_meta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/_10ssp" />
+    </LinearLayout>
+
+    <com.kdt.mcgui.MineButton
+        android:id="@+id/catalog_item_install"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_34sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:background="@drawable/cli_secondary_button"
+        android:minWidth="@dimen/_72sdp"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:text="@string/cli_mods_install"
+        android:textAllCaps="false"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_11ssp" />
+</LinearLayout>

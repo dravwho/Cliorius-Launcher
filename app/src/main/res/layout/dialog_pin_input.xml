@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EditText xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pin_input"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_20sdp"
+    android:background="@drawable/cli_input_field"
+    android:hint="@string/cli_sec_pin_hint"
+    android:inputType="numberPassword"
+    android:maxLength="8"
+    android:maxLines="1"
+    android:padding="@dimen/_12sdp"
+    android:textColor="@color/primary_text"
+    android:textColorHint="@color/tertiary_text"
+    android:textSize="@dimen/_14ssp" />

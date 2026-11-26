@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app2="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:key=""
+    >
+
+    <net.kdt.pojavlaunch.firefly.prefs.BackButtonPreference />
+
+    <PreferenceCategory
+        style="@style/CliPreferenceCategory"
+        android:title="@string/preference_category_main_categories"
+        app2:iconSpaceReserved="false"
+        >
+
+        <Preference
+            android:key="launcher_screen_setting"
+            android:title="@string/preference_launcher_title"
+            android:summary="@string/preference_launcher_desc"
+            android:fragment="net.kdt.pojavlaunch.firefly.prefs.screens.LauncherPreferenceLauncherFragment"
+            android:icon="@drawable/ic_setting_launcher"
+            />
+
+        <Preference
+            android:key="video_screen_setting"
+            android:title="@string/preference_video_title"
+            android:summary="@string/preference_video_description"
+            android:fragment="net.kdt.pojavlaunch.firefly.prefs.screens.LauncherPreferenceVideoFragment"
+            android:icon="@drawable/ic_setting_video"
+            />
+
+        <Preference
+            android:key="control_screen_setting"
+            android:title="@string/preference_control_title"
+            android:summary="@string/preference_control_description"
+            android:fragment="net.kdt.pojavlaunch.firefly.prefs.screens.LauncherPreferenceControlFragment"
+            android:icon="@drawable/ic_menu_custom_controls"
+            />
+
+        <Preference
+            android:key="java_screen_setting"
+            android:title="@string/preference_java_title"
+            android:summary="@string/preference_java_description"
+            android:fragment="net.kdt.pojavlaunch.firefly.prefs.screens.LauncherPreferenceJavaFragment"
+            android:icon="@drawable/ic_setting_java_runtime"
+            />
+
+        <Preference
+            android:key="perf_screen_setting"
+            android:title="@string/cli_perf_screen_title"
+            android:summary="@string/cli_perf_screen_sum"
+            android:fragment="net.kdt.pojavlaunch.firefly.prefs.screens.LauncherPreferencePerformanceFragment"
+            android:icon="@drawable/ic_menu_benchmark"
+            />
+
+        <Preference
+            android:key="security_screen_setting"
+            android:title="@string/cli_sec_screen_title"
+            android:summary="@string/cli_sec_screen_sum"
+            android:fragment="net.kdt.pojavlaunch.firefly.prefs.screens.LauncherPreferenceSecurityFragment"
+            android:icon="@drawable/ic_menu_settings"
+            />
+
+        <Preference
+            android:key="misc_screen_setting"
+            android:title="@string/preference_misc_title"
+            android:summary="@string/preference_misc_description"
+            android:fragment="net.kdt.pojavlaunch.firefly.prefs.screens.LauncherPreferenceMiscellaneousFragment"
+            android:icon="@drawable/ic_setting_misc"
+            />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        style="@style/CliPreferenceCategory"
+        android:title="@string/cli_category_tools"
+        app2:iconSpaceReserved="false"
+        >
+
+        <Preference
+            android:key="cli_custom_controls"
+            android:title="@string/mcl_option_customcontrol"
+            android:summary="@string/cli_sum_custom_controls"
+            android:icon="@drawable/ic_menu_custom_controls"
+            app2:iconSpaceReserved="false"
+            />
+
+        <Preference
+            android:key="cli_execute_jar"
+            android:title="@string/main_install_jar_file"
+            android:summary="@string/cli_sum_execute_jar"
+            android:icon="@drawable/ic_menu_install_jar"
+            app2:iconSpaceReserved="false"
+            />
+
+        <Preference
+            android:key="cli_terminal"
+            android:title="@string/main_terminal"
+            android:summary="@string/cli_sum_terminal"
+            android:icon="@drawable/ic_terminal"
+            app2:iconSpaceReserved="false"
+            />
+
+        <Preference
+            android:key="cli_share_log"
+            android:title="@string/main_share_logs"
+            android:summary="@string/cli_sum_share_log"
+            android:icon="@drawable/ic_menu_share"
+            app2:iconSpaceReserved="false"
+            />
+
+        <Preference
+            android:key="cli_benchmark"
+            android:title="@string/bench_menu_title"
+            android:summary="@string/cli_sum_benchmark"
+            android:icon="@drawable/ic_menu_benchmark"
+            app2:iconSpaceReserved="false"
+            />
+
+        <Preference
+            android:key="cli_about"
+            android:title="@string/mcl_tab_about_launcher"
+            android:summary="@string/cli_sum_about"
+            android:icon="@drawable/ic_menu_news"
+            app2:iconSpaceReserved="false"
+            />
+
+    </PreferenceCategory>
+
+    <Preference
+        android:title="@string/preference_ask_for_notification_title"
+        android:summary="@string/preference_ask_for_notification_description"
+        android:key="notification_permission_request"
+        />
+
+</PreferenceScreen>

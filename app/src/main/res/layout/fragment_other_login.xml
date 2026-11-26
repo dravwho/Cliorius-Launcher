@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_app"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cli_auth_ely"
+            android:textColor="@color/primary_text"
+            android:textSize="22sp"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/cli_auth_ely_form_desc"
+            android:textColor="@color/secondary_text"
+            android:textSize="12sp"
+            android:lineSpacingExtra="2dp" />
+
+        <Space android:layout_width="match_parent" android:layout_height="18dp" />
+
+        <!-- Server -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/other_login_authentication_server"
+            android:textColor="@color/tertiary_text"
+            android:textSize="10sp"
+            android:letterSpacing="0.14" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/cli_input_field"
+            android:paddingStart="12dp"
+            android:paddingEnd="6dp">
+
+            <Spinner
+                android:id="@+id/server_spinner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:popupBackground="@color/surface_card" />
+
+            <TextView
+                android:id="@+id/register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="6dp"
+                android:text="@string/other_login_register"
+                android:textColor="@color/accent"
+                android:textSize="11sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <ImageButton
+                android:id="@+id/add_server"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/cli_badge"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_add"
+                android:contentDescription="@string/cli_auth_add_server" />
+        </LinearLayout>
+
+        <!-- Email -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@string/other_login_email"
+            android:textColor="@color/tertiary_text"
+            android:textSize="10sp"
+            android:letterSpacing="0.14" />
+
+        <com.kdt.mcgui.MineEditText
+            android:id="@+id/login_edit_email"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/cli_input_field"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textEmailAddress"
+            android:paddingHorizontal="12dp"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/tertiary_text"
+            android:textSize="14sp" />
+
+        <!-- Password -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@string/other_login_password"
+            android:textColor="@color/tertiary_text"
+            android:textSize="10sp"
+            android:letterSpacing="0.14" />
+
+        <com.kdt.mcgui.MineEditText
+            android:id="@+id/login_edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/cli_input_field"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textPassword"
+            android:paddingHorizontal="12dp"
+            android:textColor="@color/primary_text"
+            android:textColorHint="@color/tertiary_text"
+            android:textSize="14sp" />
+
+        <com.kdt.mcgui.MineButton
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/cli_play_button"
+            android:text="@string/other_login"
+            android:textColor="@color/accent_on_accent"
+            android:textSize="13sp"
+            android:letterSpacing="0.12" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:orientation="vertical"
+            android:background="@drawable/cli_notice_card"
+            android:padding="14dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cli_auth_ely_note_title"
+                android:textColor="@color/primary_text"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.06" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/cli_auth_ely_note_body"
+                android:textColor="@color/secondary_text"
+                android:textSize="11sp"
+                android:lineSpacingExtra="3dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fr.spse.extended_view.ExtendedTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="?attr/selectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_48sdp"
+    android:paddingStart="@dimen/_14sdp"
+    android:paddingEnd="@dimen/_14sdp"
+    app:drawableStartSize="@dimen/_26sdp"
+    app:drawableStartIntegerScaling="true"
+    android:textColor="@color/primary_text"
+    android:gravity="center_vertical"
+    android:drawablePadding="@dimen/_14sdp"
+    tools:drawableStart="@drawable/ic_gamepad_pointer"
+    tools:text="FORGE - Forge-1.7.10-1664"
+    tools:ignore="RtlSymmetry">
+</fr.spse.extended_view.ExtendedTextView>

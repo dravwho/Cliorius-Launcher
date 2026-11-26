@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_menu_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_app">
+
+    <!-- Kolom kiri: daftar menu -->
+    <ScrollView
+        android:id="@+id/cli_scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="none"
+        android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.46">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.kdt.mcgui.CliMenuCard
+                android:id="@+id/version_manager_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cliIcon="@drawable/ic_list"
+                app:cliTitle="@string/version_manager_title"
+                app:cliSubtitle="@string/cli_sub_versions" />
+
+            <com.kdt.mcgui.CliMenuCard
+                android:id="@+id/mod_manager_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cliIcon="@drawable/ic_menu_extension"
+                app:cliTitle="@string/cli_mods_title"
+                app:cliSubtitle="@string/cli_sub_mods" />
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/divider"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cli_scroll" />
+
+    <!-- Kolom kanan: panel status + kontrol -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_14sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cli_scroll"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/cli_card"
+            android:padding="@dimen/_16sdp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@color/divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cli_stat_ram"
+                        android:textColor="@color/tertiary_text"
+                        android:textSize="@dimen/_9ssp"
+                        android:letterSpacing="0.12"
+                        android:textAllCaps="true" />
+
+                    <TextView
+                        android:id="@+id/cli_stat_ram_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cli_stat_ram_default"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/_13ssp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cli_stat_renderer"
+                        android:textColor="@color/tertiary_text"
+                        android:textSize="@dimen/_9ssp"
+                        android:letterSpacing="0.12"
+                        android:textAllCaps="true" />
+
+                    <TextView
+                        android:id="@+id/cli_stat_renderer_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cli_stat_renderer_default"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/_13ssp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cli_stat_java"
+                        android:textColor="@color/tertiary_text"
+                        android:textSize="@dimen/_9ssp"
+                        android:letterSpacing="0.12"
+                        android:textAllCaps="true" />
+
+                    <TextView
+                        android:id="@+id/cli_stat_java_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cli_stat_java_default"
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/_13ssp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <com.kdt.mcgui.mcVersionSpinner
+                android:id="@+id/mc_version_spinner"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/_44sdp"
+                android:background="@drawable/cli_field"
+                android:stateListAnimator="@animator/cli_press_scale"
+                android:drawableEnd="@drawable/spinner_arrow"
+                app:drawableEndPadding="@dimen/_10sdp"
+                app:drawableEndSize="@dimen/_16sdp"
+                app:drawableStartIntegerScaling="true"
+                app:drawableStartSize="@dimen/_24sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp" />
+
+            <Space android:layout_width="@dimen/_7sdp" android:layout_height="match_parent" />
+
+            <ImageButton
+                android:id="@+id/path_manager_button"
+                android:layout_width="@dimen/_44sdp"
+                android:layout_height="@dimen/_44sdp"
+                android:background="@drawable/cli_field"
+                android:stateListAnimator="@animator/cli_press_scale"
+                android:scaleType="centerInside"
+                android:contentDescription="@string/cli_cd_path"
+                android:src="@drawable/cli_folder"
+                android:padding="@dimen/_11sdp" />
+
+            <Space android:layout_width="@dimen/_7sdp" android:layout_height="match_parent" />
+
+            <ImageButton
+                android:id="@+id/edit_profile_button"
+                android:layout_width="@dimen/_44sdp"
+                android:layout_height="@dimen/_44sdp"
+                android:background="@drawable/cli_field"
+                android:stateListAnimator="@animator/cli_press_scale"
+                android:scaleType="centerInside"
+                android:contentDescription="@string/cli_cd_edit"
+                android:src="@drawable/cli_edit"
+                android:padding="@dimen/_11sdp" />
+        </LinearLayout>
+
+        <com.kdt.mcgui.MineButton
+            android:id="@+id/play_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_9sdp"
+            android:text="@string/cli_play"
+            android:textAllCaps="true"
+            android:textColor="@color/accent_on_accent"
+            android:textSize="@dimen/_13ssp"
+            android:letterSpacing="0.14"
+            android:background="@drawable/cli_play_button" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

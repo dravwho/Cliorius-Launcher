@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CliMenuCard">
+        <attr name="cliIcon" format="reference" />
+        <attr name="cliTitle" format="string" />
+        <attr name="cliSubtitle" format="string" />
+    </declare-styleable>
+</resources>

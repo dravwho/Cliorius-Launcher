@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app2="http://schemas.android.com/apk/res-auto">
+
+    <net.kdt.pojavlaunch.firefly.prefs.BackButtonPreference />
+
+    <PreferenceCategory
+        style="@style/CliPreferenceCategory"
+        android:title="@string/cli_perf_cat_gc"
+        app2:iconSpaceReserved="false">
+
+        <SwitchPreference
+            android:key="perf_gc"
+            android:defaultValue="true"
+            android:title="@string/cli_perf_gc_title"
+            android:summary="@string/cli_perf_gc_sum"
+            app2:iconSpaceReserved="false" />
+
+        <SwitchPreference
+            android:key="perf_tiered"
+            android:defaultValue="true"
+            android:title="@string/cli_perf_tiered_title"
+            android:summary="@string/cli_perf_tiered_sum"
+            app2:iconSpaceReserved="false" />
+
+        <SwitchPreference
+            android:key="perf_string_dedup"
+            android:defaultValue="true"
+            android:title="@string/cli_perf_dedup_title"
+            android:summary="@string/cli_perf_dedup_sum"
+            app2:iconSpaceReserved="false" />
+
+        <SwitchPreference
+            android:key="perf_class_sharing"
+            android:defaultValue="true"
+            android:title="@string/cli_perf_share_title"
+            android:summary="@string/cli_perf_share_sum"
+            app2:iconSpaceReserved="false" />
+
+        <SwitchPreference
+            android:key="perf_disable_explicit_gc"
+            android:defaultValue="true"
+            android:title="@string/cli_perf_nogc_title"
+            android:summary="@string/cli_perf_nogc_sum"
+            app2:iconSpaceReserved="false" />
+
+        <SwitchPreference
+            android:key="perf_fast_throw"
+            android:defaultValue="true"
+            android:title="@string/cli_perf_fastthrow_title"
+            android:summary="@string/cli_perf_fastthrow_sum"
+            app2:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        style="@style/CliPreferenceCategory"
+        android:title="@string/cli_perf_cat_display"
+        app2:iconSpaceReserved="false">
+
+        <net.kdt.pojavlaunch.firefly.prefs.CustomSeekBarPreference
+            android:key="perf_max_fps"
+            android:title="@string/cli_perf_fps_title"
+            android:summary="@string/cli_perf_fps_sum"
+            app2:showSeekBarValue="true"
+            app2:seekBarIncrement="10"
+            app2:iconSpaceReserved="false" />
+
+        <SwitchPreference
+            android:key="perf_disable_vsync_game"
+            android:defaultValue="false"
+            android:title="@string/cli_perf_novsync_title"
+            android:summary="@string/cli_perf_novsync_sum"
+            app2:iconSpaceReserved="false" />
+
+        <SwitchPreference
+            android:key="perf_fps_overlay"
+            android:defaultValue="false"
+            android:title="@string/cli_perf_overlay_title"
+            android:summary="@string/cli_perf_overlay_sum"
+            app2:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        style="@style/CliPreferenceCategory"
+        android:title="@string/cli_perf_cat_auto"
+        app2:iconSpaceReserved="false">
+
+        <Preference
+            android:key="cli_auto_tune"
+            android:title="@string/cli_perf_autotune_title"
+            android:summary="@string/cli_perf_autotune_sum"
+            app2:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        style="@style/CliPreferenceCategory"
+        android:title="@string/cli_perf_cat_info"
+        app2:iconSpaceReserved="false">
+
+        <Preference
+            android:key="cli_perf_ram_info"
+            android:title="@string/cli_perf_ram_title"
+            android:summary="@string/cli_perf_ram_sum"
+            app2:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

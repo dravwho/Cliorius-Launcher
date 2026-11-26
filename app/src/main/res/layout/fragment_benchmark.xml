@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_app">
+
+    <LinearLayout
+        android:id="@+id/bench_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/fragment_padding_medium"
+        android:paddingVertical="@dimen/_6sdp"
+        android:background="@color/background_bottom_bar"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/bench_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_4sdp"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/bench_back"
+            android:textColor="@color/primary_text"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/bench_title"
+            android:textColor="@color/primary_text"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="@dimen/_56sdp"
+            android:layout_height="1dp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/bench_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/background_overlay"
+        app:layout_constraintTop_toBottomOf="@id/bench_header" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/bench_divider"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/fragment_padding_medium"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_20sdp">
+
+            <!-- ===== Perangkat ===== -->
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bench_section_device"
+                android:textColor="@color/primary_text"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/bench_device_gpu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:textColor="@color/secondary_text"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/bench_device_gles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/secondary_text"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/bench_device_ram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/secondary_text"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/bench_device_renderer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/secondary_text"
+                android:textSize="13sp" />
+
+            <View
+                style="@style/ThickDivider"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_12sdp" />
+
+            <!-- ===== Tombol jalankan ===== -->
+            <Button
+                android:id="@+id/bench_run_button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_52sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@color/minebutton_color"
+                android:text="@string/bench_run"
+                android:textAllCaps="true"
+                android:textColor="#1A1A1A"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bench_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:gravity="center"
+                android:textColor="@color/secondary_text"
+                android:textSize="12sp" />
+
+            <ProgressBar
+                android:id="@+id/bench_progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:max="100"
+                android:visibility="gone" />
+
+            <!-- ===== Hasil RAM ===== -->
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="@string/bench_section_ram"
+                android:textColor="@color/primary_text"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/bench_ram_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="monospace"
+                android:textColor="@color/secondary_text"
+                android:textSize="12sp" />
+
+            <!-- ===== Hasil renderer ===== -->
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="@string/bench_section_renderer"
+                android:textColor="@color/primary_text"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/bench_renderer_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="monospace"
+                android:textColor="@color/secondary_text"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

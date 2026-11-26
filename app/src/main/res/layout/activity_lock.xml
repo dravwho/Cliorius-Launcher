@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_app"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/_24sdp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cli_lock_title"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:text="@string/cli_lock_subtitle"
+        android:textColor="@color/secondary_text"
+        android:textSize="@dimen/_12ssp" />
+
+    <EditText
+        android:id="@+id/lock_pin_input"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:background="@drawable/cli_input_field"
+        android:hint="@string/cli_sec_pin_hint"
+        android:inputType="numberPassword"
+        android:maxLength="8"
+        android:maxLines="1"
+        android:paddingHorizontal="@dimen/_14sdp"
+        android:textAlignment="center"
+        android:textColor="@color/primary_text"
+        android:textColorHint="@color/tertiary_text"
+        android:textSize="@dimen/_16ssp" />
+
+    <com.kdt.mcgui.MineButton
+        android:id="@+id/lock_unlock_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="@drawable/cli_play_button"
+        android:text="@string/cli_lock_unlock"
+        android:textAllCaps="false"
+        android:textColor="@color/accent_on_accent"
+        android:textSize="@dimen/_13ssp" />
+</LinearLayout>

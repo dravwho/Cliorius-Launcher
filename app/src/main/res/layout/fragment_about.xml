@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_app">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:paddingTop="@dimen/_16sdp"
+            android:paddingBottom="@dimen/_24sdp">
+
+            <!-- Kartu identitas -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cli_card"
+                android:orientation="vertical"
+                android:padding="@dimen/_18sdp">
+
+                <TextView
+                    android:id="@+id/title_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_about_title"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/_18ssp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/open_source"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:text="@string/fragment_about_open_source"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/_11ssp" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@color/divider" />
+
+            <TextView
+                android:id="@+id/component_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:text="@string/fragment_about_component_title"
+                android:textColor="@color/tertiary_text"
+                android:textSize="@dimen/_9ssp"
+                android:letterSpacing="0.16"
+                android:textAllCaps="true" />
+
+            <TextView
+                android:id="@+id/component_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/cli_card"
+                android:lineSpacingExtra="@dimen/_3sdp"
+                android:padding="@dimen/_16sdp"
+                android:text="@string/fragment_about_component"
+                android:textColor="@color/secondary_text"
+                android:textSize="@dimen/_11ssp" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@color/divider" />
+
+            <TextView
+                android:id="@+id/contributor_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:text="@string/fragment_about_contributor_title"
+                android:textColor="@color/tertiary_text"
+                android:textSize="@dimen/_9ssp"
+                android:letterSpacing="0.16"
+                android:textAllCaps="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/cli_card"
+                android:orientation="vertical"
+                android:padding="@dimen/_16sdp">
+
+                <TextView android:id="@+id/contributor_dravwho" style="@style/CliContributor" android:text="@string/cli_about_developer" android:textColor="@color/accent" />
+                <TextView android:id="@+id/contributor_pojavteam" style="@style/CliContributor" />
+                <TextView android:id="@+id/contributor_vera_firefly" style="@style/CliContributor" />
+                <TextView android:id="@+id/contributor_movtery" style="@style/CliContributor" />
+                <TextView android:id="@+id/contributor_mio" style="@style/CliContributor" />
+                <TextView android:id="@+id/contributor_coloryr" style="@style/CliContributor" />
+                <TextView android:id="@+id/contributor_aaaapai" style="@style/CliContributor" />
+                <TextView android:id="@+id/contributor_lingmuqiuzhu" style="@style/CliContributor" />
+                <TextView android:id="@+id/contributor_tungstend" style="@style/CliContributor" />
+                <TextView android:id="@+id/contributor_eurya2233369" style="@style/CliContributor" />
+                <TextView android:id="@+id/contributor_wvn" style="@style/CliContributor" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

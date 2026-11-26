@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ===== Cliorius design system ===== -->
+    <color name="background_app">#0E0F12</color>
+    <color name="background_bottom_bar">#121418</color>
+    <color name="background_status_bar">#0E0F12</color>
+    <color name="background_overlay">#1A1D23</color>
+
+    <color name="surface_card">#16181D</color>
+    <color name="surface_card_pressed">#1E2128</color>
+    <color name="surface_icon">#1F232B</color>
+    <color name="surface_raised">#1A1D23</color>
+
+    <color name="divider">#23262D</color>
+    <color name="hairline">#2A2E37</color>
+
+    <color name="accent">#B3B3B3</color>
+    <color name="accent_pressed">#D2D2D2</color>
+    <color name="accent_on_accent">#101216</color>
+    <color name="accent_soft">#1FB3B3B3</color>
+
+    <color name="primary_text">#F2F4F7</color>
+    <color name="secondary_text">#8B93A1</color>
+    <color name="tertiary_text">#5F6672</color>
+
+    <color name="ripple_light">#1FB3B3B3</color>
+
+    <!-- legacy aliases -->
+    <color name="minebutton_color">#B3B3B3</color>
+    <color name="control_button_color">#4CB3B3B3</color>
+    <color name="control_button_pressed_color">#4D000000</color>
+</resources>

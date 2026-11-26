@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app2="http://schemas.android.com/apk/res-auto">
+
+    <net.kdt.pojavlaunch.firefly.prefs.BackButtonPreference />
+
+    <PreferenceCategory
+        style="@style/CliPreferenceCategory"
+        android:title="@string/cli_sec_cat_lock"
+        app2:iconSpaceReserved="false">
+
+        <SwitchPreference
+            android:key="app_lock_enabled"
+            android:defaultValue="false"
+            android:title="@string/cli_sec_lock_title"
+            android:summary="@string/cli_sec_lock_sum"
+            app2:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="app_lock_set_pin"
+            android:title="@string/cli_sec_pin_title"
+            android:summary="@string/cli_sec_pin_sum"
+            app2:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        style="@style/CliPreferenceCategory"
+        android:title="@string/cli_sec_cat_sessions"
+        app2:iconSpaceReserved="false">
+
+        <Preference
+            android:key="cli_sessions_info"
+            android:title="@string/cli_sec_sessions_title"
+            android:summary="@string/cli_sec_sessions_sum"
+            app2:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="cli_logout_all"
+            android:title="@string/cli_sec_logout_title"
+            android:summary="@string/cli_sec_logout_sum"
+            app2:iconSpaceReserved="false" />
+    </PreferenceCategory>
+</PreferenceScreen>
