@@ -42,8 +42,8 @@ import okhttp3.Response;
 
 public class UpdateLauncher {
 
-    private static final String GITHUB_API = "https://api.github.com/repos/Vera-Firefly/Pojav-Glow-Worm/releases/latest";
-    private static final String GITHUB_RELEASE_URL = "github.com/Vera-Firefly/Pojav-Glow-Worm/releases/download/%s/Pojav-Glow-Worm-%s-%s.apk";
+    private static final String GITHUB_API = "https://api.github.com/repos/dravwho/Cliorius-Launcher/releases/latest";
+    private static final String GITHUB_RELEASE_URL = "github.com/dravwho/Cliorius-Launcher/releases/download/%s/Cliorius-Launcher-%s.apk";
     private static final String CACHE_APK_NAME = "cache.apk";
     private static final String APK_VERSION_FILE_NAME = "apk_version";
     private static final String IGNORE_VERSION_FILE_NAME = "ignore_version";
@@ -214,7 +214,7 @@ public class UpdateLauncher {
     }
 
     private void showDownloadSourceDialog(String tagName, String versionName, String archModel) {
-        String githubUrl = String.format(GITHUB_RELEASE_URL, tagName, versionName, archModel);
+        String githubUrl = String.format(GITHUB_RELEASE_URL, tagName, archModel);
         // Note: gh-proxy accepts "github.com/..." format (without https:// prefix)
         // It will automatically prepend "https://" internally
         String[] sources = {
@@ -331,11 +331,11 @@ public class UpdateLauncher {
 
     private String getArchModel() {
         int arch = Tools.DEVICE_ARCHITECTURE;
-        if (arch == ARCH_ARM64) return "arm64-v8a";
-        if (arch == ARCH_ARM) return "armeabi-v7a";
+        if (arch == ARCH_ARM64) return "arm64";
+        if (arch == ARCH_ARM) return "arm";
         if (arch == ARCH_X86_64) return "x86_64";
         if (arch == ARCH_X86) return "x86";
-        return "all";
+        return "universal-arm";
     }
 
     private void saveIgnoreVersion(String tagName) {

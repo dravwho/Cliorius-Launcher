@@ -39,7 +39,7 @@ class PgwVersionConfig(
     @SerializedName("controlFile") var controlFile: String = "",
     @SerializedName("enableModsCheck") var enableModsCheck: Boolean = true,
     @SerializedName("customGameDir") var customGameDir: String = "",
-    /** Per-version RAM override in MB. 0 = follow the global launcher setting. */
+    // Cliorius: per-version RAM override (MB). 0 = follow global launcher setting.
     @SerializedName("ramAllocation") var ramAllocation: Int = 0
 ) {
     fun effectiveGameDirectory(versionId: String): File {

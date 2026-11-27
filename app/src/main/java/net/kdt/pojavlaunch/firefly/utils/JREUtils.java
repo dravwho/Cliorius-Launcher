@@ -647,16 +647,12 @@ public class JREUtils {
             userArgs.add("-Dorg.lwjgl.system.allocator=system");
         }
         //Add automatically generated args
-        // Per-version RAM override (0 = use the global launcher setting).
+        // Cliorius: per-version RAM override (0 = use global launcher setting)
         int ramMb = LauncherPreferences.PREF_RAM_ALLOCATION;
         try {
-            net.kdt.pojavlaunch.firefly.version.PgwInstalledVersion installed =
-                    net.kdt.pojavlaunch.firefly.version.PgwVersionRepository.INSTANCE.current();
-            if (installed != null && installed.getConfig().getRamAllocation() > 0) {
-                ramMb = installed.getConfig().getRamAllocation();
-            }
-        } catch (Throwable ignored) {
-        }
+            net.kdt.pojavlaunch.firefly.version.PgwInstalledVersion v = net.kdt.pojavlaunch.firefly.version.PgwVersionRepository.INSTANCE.current();
+            if (v != null && v.getConfig().getRamAllocation() > 0) ramMb = v.getConfig().getRamAllocation();
+        } catch (Throwable ignored) {}
         final int ramMbFinal = ramMb;
         userArgs.add("-Xms" + ramMbFinal + "M");
         userArgs.add("-Xmx" + ramMbFinal + "M");

@@ -726,4 +726,29 @@
     <string name="cli_lang_sum">Ubah bahasa seluruh tampilan launcher</string>
     <string name="cli_version_ram_label">RAM for this version (0 = use global)</string>
     <string name="cli_version_ram_value">%1$d MB</string>
+    <string name="base_version_code">7000</string>
+    <string name="cli_tab_mod">Mod</string>
+    <string name="cli_tab_shader">Shader</string>
+    <string name="cli_tab_resourcepack">Resource Pack</string>
+    <string name="cli_tab_datapack">Datapack</string>
+    <string name="cli_crash_title">Crash Viewer</string>
+    <string name="cli_crash_sum">Baca crash terakhir &amp; perbaiki otomatis</string>
+    <string name="cli_crash_refresh">Muat ulang</string>
+    <string name="cli_crash_log_label">LOG CRASH</string>
+    <string name="cli_crash_none">Tidak ada file crash ditemukan. Bagus — launcher berjalan normal.</string>
+    <string name="cli_crash_none_title">Tidak ada crash</string>
+    <string name="cli_crash_none_advice">File latestcrash.txt belum ada. Crash akan tercatat otomatis di sini bila terjadi.</string>
+    <string name="cli_crash_fix_applied">Perbaikan diterapkan. Jalankan game lagi.</string>
+    <string name="cli_crash_oom_title">RAM tidak cukup (OutOfMemory)</string>
+    <string name="cli_crash_oom_advice">Game kehabisan memori. Alokasi sekarang %1$d MB. Disarankan naik ke %2$d MB.</string>
+    <string name="cli_crash_oom_fix">Naikkan RAM ke %1$d MB</string>
+    <string name="cli_crash_gl_title">Masalah renderer / OpenGL</string>
+    <string name="cli_crash_gl_advice">Renderer gagal membuat konteks OpenGL. Coba ganti ke OpenGL ES 2.0 (gl4es) yang paling kompatibel.</string>
+    <string name="cli_crash_gl_fix">Ganti renderer ke OpenGL ES 2.0</string>
+    <string name="cli_crash_java_title">Versi Java tidak cocok</string>
+    <string name="cli_crash_java_advice">Versi Minecraft ini butuh Java lebih baru. Buka Settings → Java Tweaks dan pilih JRE 17 atau 21.</string>
+    <string name="cli_crash_mod_title">Kemungkinan mod bermasalah</string>
+    <string name="cli_crash_mod_advice">Crash menyebut mod. Buka Mod Manager dan nonaktifkan mod yang baru dipasang, lalu coba lagi.</string>
+    <string name="cli_crash_generic_title">Crash tidak dikenali</string>
+    <string name="cli_crash_generic_advice">Periksa log di atas. Coba turunkan resolusi, ganti renderer, atau bagikan log ke pengembang.</string>
 </resources>

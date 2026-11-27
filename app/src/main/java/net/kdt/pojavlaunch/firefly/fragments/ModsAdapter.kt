@@ -34,7 +34,8 @@ class ModsAdapter(
         val info = items[position]
         holder.name.text = info.name.ifBlank { info.id }
         val file = info.file
-        val enabled = file != null && file.name.endsWith(".jar", ignoreCase = true)
+        // Aktif = file tidak berakhiran .disabled (berlaku untuk .jar maupun .zip)
+        val enabled = file != null && !file.name.endsWith(".disabled", ignoreCase = true)
         holder.meta.text = buildString {
             append(info.id)
             if (info.version.isNotBlank()) append(" · v").append(info.version)

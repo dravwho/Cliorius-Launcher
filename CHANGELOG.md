@@ -1,62 +1,63 @@
 # Changelog
 
 All notable changes to Cliorius Launcher are documented in this file.
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [6.0.0] - 2026-11-27
+## v7.0.0 — 2026-11-27
 
 ### Added
-
-#### Mod Manager
-- **Mod icons from Modrinth** — every mod in the online catalog now shows its
-  official icon, fetched directly from the Modrinth CDN (`icon_url`) and cached
-  in memory so scrolling stays smooth.
-- **One-tap download** — pressing *Download* starts the transfer immediately.
-  There is no confirmation dialog and no "accept this URL" prompt. Pick a
-  version, fill in the details, and the file lands in the instance `mods/`
-  folder.
-- Automatic Minecraft-version matching: the newest release compatible with the
-  active instance is selected for you.
-
-#### Per-version settings
-- **Per-version RAM allocation** — each installed version can now define its own
-  memory budget (0–8192 MB) instead of inheriting the global launcher value.
-  A value of `0` keeps the global setting. The override is written to the
-  version config (`ramAllocation`) and injected into the JVM as `-Xms`/`-Xmx`
-  at launch time.
-- The per-version settings page gained a RAM slider with a live MB readout.
-
-### Changed
-- Version settings page layout reworked so the RAM control sits next to the JVM
-  arguments field.
+- **20 launcher UI languages** — the language picker in Settings now actually works.
+  Full translations for: Indonesian, English, Simplified Chinese, Traditional Chinese,
+  Japanese, Korean, German, French, Spanish, Portuguese, Russian, Arabic, Turkish,
+  Vietnamese, Thai, Italian, Dutch, Polish, Ukrainian, plus "Follow system".
+- **Crash Viewer** — reads `latestcrash.txt`, detects common failure patterns
+  (OutOfMemory, OpenGL context failure, wrong Java version, broken mod) and offers
+  one-tap automatic fixes (raise RAM, switch renderer, change JRE).
+- **Mod Manager multi-type** — tabbed catalog for Mods, Shaders, Resource Packs and
+  Datapacks. Files are installed into the correct folder (`mods/`, `shaderpacks/`,
+  `resourcepacks/`, `datapacks/`).
+- **Mod icons from Modrinth** — catalog entries show the project icon, cached in memory.
+- **One-tap mod download** — no confirmation dialog, no "accept this URL" prompt.
+- **Per-version settings** — each Minecraft instance can override RAM allocation
+  independently of the global launcher setting.
 
 ### Fixed
-- Java compile error caused by a non-final local variable captured in a lambda
-  inside `JREUtils.launchJavaVM`.
-- Kotlin data class syntax error in `PgwVersionConfig` (missing comma before the
-  new `ramAllocation` field).
+- **Update checker pointed at the upstream Pojav repository** — it now checks
+  `dravwho/Cliorius-Launcher` and downloads the correct Cliorius APK for the device ABI.
+- **`versionCode` was hardcoded to 9999999** — now a real, incrementing version code
+  so in-app update detection works.
+- Apostrophe escaping in French and Italian string resources that broke resource
+  compilation.
 
-## [5.0.0] - 2026-11-26
+### Changed
+- Repository documentation is English-only (`README-ZH_CN.md` removed).
+
+## v6.0.0 — 2026-11-27
+
+### Added
+- Mod icons from the Modrinth CDN in the catalog.
+- One-tap mod download without a confirmation dialog.
+- Per-version RAM allocation (`PgwVersionConfig.ramAllocation`), read by
+  `JREUtils.launchJavaVM()` and applied as `-Xms`/`-Xmx`.
+
+### Changed
+- All repository documentation rewritten in English.
+
+## v5.0.0 — 2026-11-26
 
 ### Added
 - Integrated Mod Manager backed by the Modrinth API.
 - Performance & FPS settings: GC selection (ZGC/G1GC), tiered compilation,
-  string deduplication, class sharing, explicit-GC suppression, fast throw,
-  FPS cap, and VSync toggle.
-- Auto-Tune: reads device RAM and GPU, then applies a recommended profile.
-- In-game FPS overlay.
-- App lock with PIN.
-- "Log out all sessions".
-- UI language selector covering 20+ languages.
-- Multi-instance support with per-version data isolation.
+  string deduplication, class sharing, FPS limit, VSync control, FPS overlay.
+- Auto-Tune: reads device RAM and GPU, then applies a matching performance profile.
+- Security & Account settings: PIN app lock, session list, log out of all sessions.
+- Launcher UI language picker.
+- Multi-instance support through per-version data isolation.
 
-## [1.0.0] - 2026-11-23
+## v1.0.0 — 2026-11-25
 
 ### Added
 - First public build: full Pojav Glow-Worm engine with the Cliorius UI.
 - Renderers: gl4es, nggl4es, MobileGlues, Mesa/OSMesa (6 variants), Vulkan Zink,
   virgl, freedreno, panfrost.
-- JRE 8 / 17 / 21 / 25 runtime loader.
-- Microsoft, Ely.by/Yggdrasil and offline account support.
-- Benchmark screen (device info, RAM test, renderer micro-benchmark).
+- Microsoft, Ely.by/Yggdrasil and offline account login.
+- Per-ABI APKs: arm64-v8a, armeabi-v7a, x86, x86_64 and a universal ARM build.

@@ -28,11 +28,16 @@ class CatalogAdapter(
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val e = items[position]
-        holder.icon.setImageResource(R.drawable.ic_menu_extension)
-        val activity = holder.itemView.context as? androidx.fragment.app.FragmentActivity
-        activity?.supportFragmentManager?.fragments
-            ?.filterIsInstance<ModManagerFragment>()?.firstOrNull()
-            ?.loadIcon(e.slug) { bmp -> if (bmp != null) holder.icon.setImageBitmap(bmp) }
+        holder.icon.setImageDrawable(null)
+        holder.icon.setBackgroundResource(R.drawable.cli_icon_bg)
+        // Cliorius: load mod icon straight from Modrinth (icon_url), cached
+        (holder.itemView.context as? androidx.fragment.app.FragmentActivity)?.let { act ->
+            val frag = act.supportFragmentManager.fragments.filterIsInstance<ModManagerFragment>().firstOrNull()
+            frag?.loadIcon(e.slug) { bmp ->
+                if (bmp != null) holder.icon.setImageBitmap(bmp)
+                else holder.icon.setImageResource(R.drawable.ic_menu_extension)
+            }
+        }
         holder.name.text = e.title
         holder.meta.text = buildString {
             if (e.description.isNotBlank()) append(e.description.take(90))

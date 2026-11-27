@@ -183,7 +183,7 @@ android {
         applicationId = appPackageName
         minSdk = 26
         targetSdk = 28
-        versionCode = 9999999
+        versionCode = 7000
         versionName = versionName()
     }
 

@@ -34,6 +34,12 @@
             android:title="@string/version_isolation_title"
             app2:iconSpaceReserved="false" />
 
+        <Preference
+            android:key="cli_crash_viewer"
+            android:title="@string/cli_crash_title"
+            android:summary="@string/cli_crash_sum"
+            android:icon="@drawable/ic_menu_benchmark"
+            app2:iconSpaceReserved="false" />
     </PreferenceCategory>
 
 </PreferenceScreen>

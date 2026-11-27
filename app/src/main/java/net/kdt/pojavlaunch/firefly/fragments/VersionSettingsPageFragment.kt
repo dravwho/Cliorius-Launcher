@@ -18,8 +18,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.SeekBar
 import android.widget.Spinner
+import android.widget.SeekBar
 import android.widget.TextView
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
@@ -140,15 +140,13 @@ class VersionSettingsPageFragment : Fragment() {
             persist { it.jvmArgs = args }
         }
         ramSeek.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(bar: SeekBar?, progress: Int, fromUser: Boolean) {
+            override fun onProgressChanged(sb: SeekBar?, progress: Int, fromUser: Boolean) {
                 ramValue.text = getString(R.string.cli_version_ram_value, progress)
             }
-
-            override fun onStartTrackingTouch(bar: SeekBar?) = Unit
-
-            override fun onStopTrackingTouch(bar: SeekBar?) {
+            override fun onStartTrackingTouch(sb: SeekBar?) {}
+            override fun onStopTrackingTouch(sb: SeekBar?) {
                 if (!canPersist()) return
-                val mb = bar?.progress ?: 0
+                val mb = sb?.progress ?: 0
                 version.config.ramAllocation = mb
                 persist { it.ramAllocation = mb }
             }

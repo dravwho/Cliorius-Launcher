@@ -1,186 +1,154 @@
-# Cliorius Launcher
+<H1 align="center">Pojav Glow·Worm</H1>
 
-[![Release](https://img.shields.io/github/v/release/dravwho/Cliorius-Launcher)](https://github.com/dravwho/Cliorius-Launcher/releases)
-[![License](https://img.shields.io/github/license/dravwho/Cliorius-Launcher)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Android%208.0%2B-3ddc84)](https://developer.android.com)
+<img src="https://github.com/PojavLauncherTeam/PojavLauncher/blob/v3_openjdk/app_pojavlauncher/src/main/assets/pojavlauncher.png" align="left" width="130" height="150" alt="PojavLauncher logo">
 
-**Cliorius Launcher** runs **Minecraft: Java Edition** on Android. It is a fork of
-[Pojav Glow-Worm](https://github.com/Vera-Firefly/Pojav-Glow-Worm) (itself based on
-ZalithLauncher) with a redesigned interface, real performance tooling, and an
-integrated mod manager.
+[![Android CI](https://github.com/Vera-Firefly/Pojav-Glow-Worm/actions/workflows/main.yml/badge.svg)](https://github.com/Vera-Firefly/Pojav-Glow-Worm/actions)
+![Downloads](https://img.shields.io/github/downloads/Vera-Firefly/Pojav-Glow-Worm/total)
 
----
+* <a href="/README-ZH_CN.md">中文</a>
 
-## Download
+* From [Boardwalk](https://github.com/zhuowei/Boardwalk)'s ashes here comes PojavLauncher!
 
-Grab the APK that matches your device from
-[Releases](https://github.com/dravwho/Cliorius-Launcher/releases):
+* PojavLauncher is a launcher that allows you to play Minecraft: Java Edition on your Android device!
 
-| File | Target device |
-| --- | --- |
-| `Cliorius-Launcher-arm64.apk` | Modern Android phones (2017+, 64-bit) — **most common** |
-| `Cliorius-Launcher-arm.apk` | Older / 32-bit ARM devices |
-| `Cliorius-Launcher-x86_64.apk` | Emulators, Chromebooks, 64-bit Intel |
-| `Cliorius-Launcher-x86.apk` | Legacy 32-bit Intel emulators |
-| `Cliorius-Launcher-universal-arm.apk` | One APK for every ARM phone (safest choice) |
+* It can run almost every version of Minecraft, allowing you to use .jar only installers to install modloaders such as [Forge](https://files.minecraftforge.net/) and [Fabric](http://fabricmc.net/), mods like [OptiFine](https://optifine.net) and [LabyMod](https://www.labymod.net/en), as well as hack clients like [Wurst](https://www.wurstclient.net/), and much more!
+## Some notes to start with
+- I only post videos on the [BiliBili](https://space.bilibili.com/1412062866?spm_id_from=333.1007.0.0) platform, all other places are transported
 
-### Installation
+- This repository was forked on [PojavLauncherTeam:PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher)
 
-1. Download the APK for your architecture.
-2. Allow *Install unknown apps* for your file manager or browser.
-3. Open the APK and install.
-4. On first launch the launcher downloads a Java runtime and the Minecraft
-   assets automatically. This requires an internet connection and roughly
-   1–2 GB of free storage.
+- This app adds more renderers and experimental settings
 
-**Minimum requirements:** Android 8.0 (API 26), 2 GB RAM recommended,
-OpenGL ES 2.0 capable GPU.
+- This is not the official version, it's just a modified,If you don't want to use it, please go to the [PojavLauncherTeam:PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher)
 
----
+## Navigation
+- [Introduction](#introduction)  
+- [Getting Pojav Glow·Worm](#getting-pojav-glow-worm)
+- [Building](#building) 
+- [Current status](#current-status) 
+- [License](#license) 
+- [Contributing](#contributing) 
+- [Credits & Third party components and their licenses](#credits--third-party-components-and-their-licenses-if-available)
+- [More](#More)
 
-## Features
+## Introduction 
+* PojavLauncher is a Minecraft: Java Edition launcher for Android based on [Boardwalk](https://github.com/zhuowei/Boardwalk). 
+* This launcher can launch almost all available Minecraft versions ranging from rd-132211 to 1.21.x snapshots (including Combat Test versions). 
+* Minecraft 26.3+ snapshots, which use SDL3 for window management and input, are supported through a bundled SDL3 compatibility layer (libSDL3.so). 
+* Modding via Forge and Fabric are also supported. 
+* This repository contains source code for Android. 
+* Pojav Glow·Worm does not support IOS
 
-### Game support
-- Runs almost every Minecraft Java version, from `rd-132211` up to the latest
-  snapshot.
-- Mod loaders: **Forge**, **NeoForge**, **Fabric**, **Quilt**, **OptiFine**.
-- Version catalog with search and filters (release, snapshot, April Fools,
-  alpha/beta), downloaded straight from Mojang's `version_manifest_v2.json`
-  with a BMCLAPI mirror fallback.
+## Getting Pojav Glow-Worm
 
-### Mod Manager
-- Search and install mods from **Modrinth** without leaving the launcher.
-- Mod icons are pulled from the Modrinth CDN.
-- Downloads start on a single tap — no confirmation dialogs.
-- Enable/disable installed mods by renaming `.jar` to `.disabled`, or delete
-  them outright.
+You can get PojavLauncher via three methods:
 
-### Performance & FPS
-- **Custom RAM allocation** globally, plus a **per-version override** so a heavy
-  1.21 modpack and a light 1.8 PvP instance can use different budgets.
-- Garbage collector presets: ZGC (JRE 21+) or G1GC with a 200 ms pause target.
-- Tiered compilation, string deduplication, class-data sharing, explicit-GC
-  suppression and fast-throw flags.
-- **FPS cap** exported to the renderer through `LIBGL_SYNC_MAXFPS` / `SDL_MAXFPS`
-  and `-Dcliorius.maxFps`.
-- **Auto-Tune** inspects device RAM and GPU and applies a recommended profile.
-- **In-game FPS overlay**.
-- Benchmark screen: device probe, RAM allocation test, and a native MultiDraw
-  micro-benchmark that ranks renderer backends.
+1. You can get the prebuilt app from [stable releases](https://github.com/Vera-Firefly/Pojav-Glow-Worm/releases) or [automatic builds](https://github.com/Vera-Firefly/Pojav-Glow-Worm/actions).
 
-### Renderers
-| Renderer | Backend | Notes |
-| --- | --- | --- |
-| `opengles3_nggl4es` | gl4es (NG) | Good default for most devices |
-| `opengles2` | gl4es 1.14 | Widest compatibility |
-| `opengles2_ptitseb` | gl4es (ptitseb) | Alternative GLES2 path |
-| `opengles2_vgpu` / `_1` | vGPU | VirGL-based |
-| `opengles3_mges` | MobileGlues | GLES 3.x translation |
-| `opengles3_mggl` | MobileGL | GLES 3.x translation |
-| `mesa_3d` | Mesa / OSMesa | Six builds: 8, 2121, 2205, 2300d, 2304, 2320d |
-| `vulkan_zink` | Zink on Vulkan | Fastest on modern Adreno |
-| `gallium_virgl` | VirGL | Virtualised environments |
-| `gallium_freedreno` | Freedreno | Qualcomm Adreno |
-| `gallium_panfrost` | Panfrost | ARM Mali |
+2. You can [build](#building) from source.
+## Building
+If you want to build from source code, follow the steps below.
+### Java Runtime Environment (JRE)
+- JRE for Android is [here](https://github.com/Vera-Firefly/android-openjdk-build)
+- Follow build instruction on build script [README.md](https://github.com/Vera-Firefly/android-openjdk-build/blob/buildjre8/README.md).
+- You can also get [CI auto builds](https://github.com/Vera-Firefly/android-openjdk-autobuild/actions) if you are lazy or are failing to build it for some reason.
+* Either get the `jre8-pojav` artifact from auto builds, or split all artifacts by yourself:</br>
+   - Get JREs for all of 4 supported architectures (arm, arm64, x86, x86_64) </br> 
+      - Split JRE into parts:</br>
+                Platform-independent: .jar files, libraries, configs, etc...</br>
+                Platform-dependent: .so files, etc...</br>
+        - Create:</br>
+                A file named `universal.tar.xz` with all platform-independent files</br>
+                4 files named `bin-<arch>.tar.xz` with all platform-dependent files per-architecture</br>
+        - Put these in the `assets/components/jre/` folder</br>
+        - (If needed) update the Version file with the current date</br>
 
-GPU detection is real: the launcher creates an EGL context and reads
-`GL_VENDOR` / `GL_RENDERER` from the driver, then adapts `LD_PRELOAD`, Zink
-driver selection and the visibility of Adreno-only options accordingly.
+### LWJGL
+* The build instructions for the custom LWJGL are available over the [LWJGL repository](https://github.com/PojavLauncherTeam/lwjgl3)
 
-### Accounts
-- **Microsoft** — official OAuth flow in an isolated WebView.
-- **Ely.by / Yggdrasil** — authlib-injector compatible; Ely.by and LittleSkin
-  are preconfigured, and additional servers can be added.
-- **Offline** — for singleplayer and LAN.
-
-> **Account security.** Cliorius Launcher never stores your Microsoft password.
-> Sign-in happens on the official `login.live.com` page inside an isolated
-> WebView, and the launcher only receives an access token that you can revoke at
-> any time from your Microsoft account. Tokens are kept in the app's private
-> storage and are never sent to a third-party server. You can revoke access at
-> `account.microsoft.com` → *Privacy* → *Apps and services*.
-
-### Security
-- Optional **PIN app lock**.
-- **Log out all sessions** in one tap.
-
-### Interface
-- Dark, flat design with a neutral `#B3B3B3` accent.
-- Vector icons only — no emoji anywhere in the UI.
-- Responsive layout for portrait and landscape.
-- 20+ UI languages, switchable from Settings.
-
----
-
-## Building from source
-
-### Requirements
-- JDK 17
-- Android SDK with platform 35 and build-tools 35.0.0
-- Android NDK 25.2.9519653 (only needed if you rebuild the native libraries)
-
-### Steps
-
-```bash
-git clone https://github.com/dravwho/Cliorius-Launcher.git
-cd Cliorius-Launcher
-
-# Point Gradle at your SDK
-echo "sdk.dir=/path/to/android-sdk" > local.properties
-
-# Build a single ABI (arm64, arm, x86, x86_64) or all of them
-JAVA_HOME=/path/to/jdk17 ./gradlew -Darch=arm64 assembleDebug
-JAVA_HOME=/path/to/jdk17 ./gradlew -Darch=all   assembleDebug
+* This modified version of lwjgl uses the latest content from [Vera-Firefly](https://github.com/Vera-Firefly) [lwjgl3-build](https://github.com/Vera-Firefly/lwjgl3-build) repository for automated builds
+### The Launcher
+* Build GLFW stub (If need):
 ```
-
-The APK is written to `app/build/outputs/apk/debug/`.
-
-### Continuous integration
-`.github/workflows/build-apk.yml` builds every ABI on push and attaches the
-resulting APKs to a GitHub Release when a `v*` tag is pushed.
-
----
-
-## Project layout
-
+git submodule update --init --recursive
 ```
-app/src/main/java/net/kdt/pojavlaunch/firefly/   launcher core (Pojav engine)
-app/src/main/java/com/movtery/                  UI layer and mod parsing
-app/src/main/java/net/kdt/pojavlaunch/firefly/version/   version catalog, installer, Modrinth API
-app/src/main/jniLibs/                           prebuilt native libraries per ABI
-app/src/main/assets/                            renderers, JRE archives, LWJGL components
+or
 ```
+chmod +x scripts/UpdateSubmodule.sh
+./scripts/UpdateSubmodule.sh
+```
+then run:
+```
+cd lwjgl3-build
+./gradlew :jre_lwjgl3glfw:build
+```
+```
+mv lwjgl3/* ../app_pojavlauncher/src/main/assets/components/lwjgl3
+cd ../
+```
+* Build the launcher
+```
+./gradlew :app_pojavlauncher:assembleDebug
+```
+(Replace `gradlew` with `gradlew.bat` if you are building on Windows)
+(If you are having trouble with `mv` permissions, try using `sudo mv`)
 
----
+## Current status
+- [x] ~~OpenJDK 9 Mobile port: ARM32, ARM64, x86, x86_64.~~ Replaced by JRE8.
+- [x] [OpenJDK 8](https://github.com/openjdk/jdk8u) Mobile port: ARM32, ARM64, x86, x86_64
+- [x] [OpenJDK 11](https://github.com/openjdk/jdk11u) Mobile port: ARM32, ARM64, x86, x86_64
+- [x] [OpenJDK 17](https://github.com/openjdk/jdk17u) Mobile port: ARM32, ARM64, x86, x86_64
+- [x] [OpenJDK 21](https://github.com/openjdk/jdk21u) Mobile port: ARM32, ARM64, x86, x86_64
+- [x] [Caciocavallo](https://openjdk.java.net/projects/caciocavallo/)
+- [x] [Caciocavallo11](https://github.com/FCL-Team/caciocavallo11-FCL)
+- [x] Headless mod installer
+- [x] Mod installer with GUI. Used `Caciocavallo` project for AWT without X11.
+- [x] OpenGL in OpenJDK environment
+- [x] OpenAL (works on most devices)
+- [x] Support for Minecraft 1.12.2 and below. Used [lwjglx](https://github.com/PojavLauncherTeam/lwjglx), a LWJGL2 compatibility layer for LWJGL3.
+- [x] Support for Minecraft 1.13 and above. Used [GLFW stub](https://github.com/PojavLauncherTeam/lwjgl3-glfw-java).
+- [x] Support for Minecraft 1.17 (22w13a to be exact) and above. Used [Holy GL4ES](https://github.com/PojavLauncherTeam/gl4es-114-extra)
+- [x] Game surface zooming.
+- [x] New input pipe rewritten to native code to boost performance.
+- [x] Rewritten entire controls system (thanks to @Mathias-Boulay)
+- [x] Virtual terminal system
+- [ ] More to come!
 
-## Credits
-
-Cliorius Launcher would not exist without the work of the people below.
-
-- **dravwho** — project owner, Cliorius UI, performance tooling, Mod Manager,
-  per-version settings, packaging and releases.
-- **Vera-Firefly** and the **Pojav Glow-Worm** contributors — the launcher engine
-  this project is forked from.
-- **PojavLauncherTeam** — the original PojavLauncher, and the Boardwalk JVM
-  bridge underneath it.
-- **ZalithLauncher** contributors — UI architecture and version-management ideas.
-- **ArtDeell**, **Mathias-Boulanger** and every other upstream contributor whose
-  code is still running inside this app.
-- The **gl4es**, **Mesa**, **ANGLE**, **MobileGlues**, **MobileGL**, **LWJGL** and
-  **authlib-injector** projects.
-
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) if you want to help.
-
----
+## Known Issues
+- Controller mods aren't working.
+- Random crashes could happen very often on Android 5.x when loading the game or joining a world.
+- With big modpacks textures could be messed up
+- Probably more, that's why we have a bug tracker
 
 ## License
+- Pojav Glow·Worm is licensed under [GNU GPLv3](https://github.com/Vera-Firefly/Pojav-Glow-Worm/blob/main_v3/LICENSE).
 
-Cliorius Launcher is distributed under the **GNU General Public License v3.0**,
-inherited from Pojav Glow-Worm. See [`LICENSE`](LICENSE) for the full text.
+## Contributing
+Contributions are welcome! We welcome any type of contribution, not only code. For example, you can help the wiki shape up. You can help the translation too!
 
-This program is free software: you can redistribute it and/or modify it under
-the terms of the GPL as published by the Free Software Foundation, either
-version 3 of the License, or (at your option) any later version.
 
-Minecraft is a trademark of Mojang Synergies AB. This project is not affiliated
-with or endorsed by Mojang or Microsoft.
+Any code change to this repository should be submitted as a pull request. The description should explain what the code does and give steps to execute it.
+
+## Credits & Third party components and their licenses (if available)
+- [Boardwalk](https://github.com/zhuowei/Boardwalk) (JVM Launcher): Unknown License/[Apache License 2.0](https://github.com/zhuowei/Boardwalk/blob/master/LICENSE) or GNU GPLv2.
+- Android Support Libraries: [Apache License 2.0](https://android.googlesource.com/platform/prebuilts/maven_repo/android/+/master/NOTICE.txt).
+- [GL4ES](https://github.com/PojavLauncherTeam/gl4es): [MIT License](https://github.com/ptitSeb/gl4es/blob/master/LICENSE).<br>
+- [OpenJDK](https://github.com/PojavLauncherTeam/openjdk-multiarch-jdk8u): [GNU GPLv2 License](https://openjdk.java.net/legal/gplv2+ce.html).<br>
+- [LWJGL3](https://github.com/PojavLauncherTeam/lwjgl3): [BSD-3 License](https://github.com/LWJGL/lwjgl3/blob/master/LICENSE.md).
+- [LWJGLX](https://github.com/PojavLauncherTeam/lwjglx) (LWJGL2 API compatibility layer for LWJGL3): unknown license.<br>
+- [Mesa 3D Graphics Library](https://gitlab.freedesktop.org/mesa/mesa): [MIT License](https://docs.mesa3d.org/license.html).
+- [Android-Mesa-Build](https://github.com/Vera-Firefly/android-mesa-build): [GNU GPLv3 License](https://github.com/Vera-Firefly/android-mesa-build/blob/master/LICENSE)
+- [TurnipDriver-CI](https://github.com/Vera-Firefly/TurnipDriver-CI): Unknown License
+- [AdrenoToolsDrivers](https://github.com/K11MCH1/AdrenoToolsDrivers): Unknown License
+- [pro-grade](https://github.com/pro-grade/pro-grade) (Java sandboxing security manager): [Apache License 2.0](https://github.com/pro-grade/pro-grade/blob/master/LICENSE.txt).
+- [bhook](https://github.com/bytedance/bhook) (Used for exit code trapping): [MIT license](https://github.com/bytedance/bhook/blob/main/LICENSE).
+- [libepoxy](https://github.com/anholt/libepoxy): [MIT License](https://github.com/anholt/libepoxy/blob/master/COPYING).
+- [virglrenderer](https://github.com/PojavLauncherTeam/virglrenderer): [MIT License](https://gitlab.freedesktop.org/virgl/virglrenderer/-/blob/master/COPYING).
+- [terminal-view](https://github.com/termux/termux-app/tree/master/terminal-view): [Apache 2.0](https://github.com/termux/termux-app/blob/master/LICENSE.md).
+- [terminal-emulator](https://github.com/termux/termux-app/tree/master/terminal-emulator): [Apache 2.0](https://github.com/termux/termux-app/blob/master/LICENSE.md).
+- Loader card icons are derived from [Zalith Launcher 2](https://github.com/ZalithLauncher/ZalithLauncher), licensed under GPLv3.
+- Thanks to [MCHeads](https://mc-heads.net) for providing Minecraft avatars.
+
+## More
+* If you want a different experience, try some of the other good ones:[ZalithLauncher](https://github.com/ZalithLauncher/ZalithLauncher)
+
