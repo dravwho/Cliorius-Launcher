@@ -14,6 +14,8 @@ import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import android.graphics.BitmapFactory
+import java.util.concurrent.ConcurrentHashMap
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -37,6 +39,8 @@ import java.net.URL
 class ModManagerFragment : Fragment(R.layout.fragment_mod_manager) {
     companion object {
         const val TAG = "ModManagerFragment"
+        /** In-memory cache of Modrinth icons: slug -> bitmap. */
+        val iconCache = ConcurrentHashMap<String, android.graphics.Bitmap?>()
     }
 
     private lateinit var adapter: ModsAdapter
@@ -200,6 +204,7 @@ class ModManagerFragment : Fragment(R.layout.fragment_mod_manager) {
     }
 
     private fun installFromCatalog(entry: CatalogEntryUi) {
+        // No confirmation dialog: tapping Download starts the transfer immediately.
         Toast.makeText(requireContext(), getString(R.string.cli_mods_downloading, entry.title), Toast.LENGTH_SHORT).show()
         lifecycleScope.launch(Dispatchers.IO) {
             val result = runCatching { downloadLatestMod(entry.slug) }
@@ -237,6 +242,24 @@ class ModManagerFragment : Fragment(R.layout.fragment_mod_manager) {
         return dest
     }
 
+
+    /** Loads a mod icon from the Modrinth CDN, cached per slug. */
+    fun loadIcon(slug: String, onLoaded: (android.graphics.Bitmap?) -> Unit) {
+        if (iconCache.containsKey(slug)) { onLoaded(iconCache[slug]); return }
+        lifecycleScope.launch(Dispatchers.IO) {
+            val bmp = runCatching {
+                val entry = searchModrinth(slug).firstOrNull()
+                val url = entry?.iconUrl ?: return@runCatching null
+                val conn = URL(url).openConnection() as HttpURLConnection
+                conn.setRequestProperty("User-Agent", "ClioriusLauncher/1.0")
+                conn.connectTimeout = 8000
+                conn.readTimeout = 8000
+                conn.inputStream.use { BitmapFactory.decodeStream(it) }
+            }.getOrNull()
+            iconCache[slug] = bmp
+            withContext(Dispatchers.Main) { onLoaded(bmp) }
+        }
+    }
 
     /** Parse mod secara blocking dengan listener sinkron (ModParser memakai Task async internal). */
     private suspend fun parseModsBlocking(): List<ModInfo> = withContext(Dispatchers.IO) {
