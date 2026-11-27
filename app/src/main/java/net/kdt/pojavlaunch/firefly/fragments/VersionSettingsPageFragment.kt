@@ -18,6 +18,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.SeekBar
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.widget.doAfterTextChanged
@@ -57,6 +58,8 @@ class VersionSettingsPageFragment : Fragment() {
     private lateinit var versionId: String
     private lateinit var version: PgwInstalledVersion
     private lateinit var jvmArgs: EditText
+    private lateinit var ramSeek: SeekBar
+    private lateinit var ramValue: TextView
     private lateinit var runtime: Spinner
     private lateinit var renderer: Spinner
     private lateinit var graphicsApi: Spinner
@@ -81,6 +84,8 @@ class VersionSettingsPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         jvmArgs = view.findViewById(R.id.version_settings_jvm_args)
+        ramSeek = view.findViewById(R.id.version_settings_ram)
+        ramValue = view.findViewById(R.id.version_settings_ram_value)
         runtime = view.findViewById(R.id.version_settings_runtime)
         renderer = view.findViewById(R.id.version_settings_renderer)
         graphicsApi = view.findViewById(R.id.version_settings_graphics_api)
@@ -134,6 +139,20 @@ class VersionSettingsPageFragment : Fragment() {
             version.config.jvmArgs = args
             persist { it.jvmArgs = args }
         }
+        ramSeek.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(bar: SeekBar?, progress: Int, fromUser: Boolean) {
+                ramValue.text = getString(R.string.cli_version_ram_value, progress)
+            }
+
+            override fun onStartTrackingTouch(bar: SeekBar?) = Unit
+
+            override fun onStopTrackingTouch(bar: SeekBar?) {
+                if (!canPersist()) return
+                val mb = bar?.progress ?: 0
+                version.config.ramAllocation = mb
+                persist { it.ramAllocation = mb }
+            }
+        })
         modsCheck.setOnCheckedChangeListener { _, checked ->
             if (!canPersist()) return@setOnCheckedChangeListener
             version.config.enableModsCheck = checked
@@ -184,6 +203,8 @@ class VersionSettingsPageFragment : Fragment() {
     private fun bind(value: PgwInstalledVersion) {
         binding = true
         jvmArgs.setText(value.config.jvmArgs)
+        ramSeek.progress = value.config.ramAllocation.coerceIn(0, 8192)
+        ramValue.text = getString(R.string.cli_version_ram_value, value.config.ramAllocation)
         modsCheck.isChecked = value.config.enableModsCheck
 
         val runtimes = MultiRTUtils.getRuntimes()
