@@ -724,4 +724,6 @@
 
     <string name="cli_lang_title">Bahasa launcher</string>
     <string name="cli_lang_sum">Ubah bahasa seluruh tampilan launcher</string>
+    <string name="cli_version_ram_label">RAM for this version (0 = use global)</string>
+    <string name="cli_version_ram_value">%1$d MB</string>
 </resources>
