@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import net.kdt.pojavlaunch.firefly.R
 
@@ -27,6 +28,11 @@ class CatalogAdapter(
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val e = items[position]
+        holder.icon.setImageResource(R.drawable.ic_menu_extension)
+        val activity = holder.itemView.context as? androidx.fragment.app.FragmentActivity
+        activity?.supportFragmentManager?.fragments
+            ?.filterIsInstance<ModManagerFragment>()?.firstOrNull()
+            ?.loadIcon(e.slug) { bmp -> if (bmp != null) holder.icon.setImageBitmap(bmp) }
         holder.name.text = e.title
         holder.meta.text = buildString {
             if (e.description.isNotBlank()) append(e.description.take(90))
@@ -40,6 +46,7 @@ class CatalogAdapter(
         if (d >= 1_000_000) "${d / 1_000_000}M unduhan" else if (d >= 1_000) "${d / 1_000}K unduhan" else "$d unduhan"
 
     class VH(v: View) : RecyclerView.ViewHolder(v) {
+        val icon: ImageView = v.findViewById(R.id.catalog_item_icon)
         val name: TextView = v.findViewById(R.id.catalog_item_name)
         val meta: TextView = v.findViewById(R.id.catalog_item_meta)
         val install: View = v.findViewById(R.id.catalog_item_install)
