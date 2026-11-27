@@ -104,4 +104,46 @@
             app2:iconSpaceReserved="false" />
     </PreferenceCategory>
 
+
+    <PreferenceCategory
+        style="@style/CliPreferenceCategory"
+        android:title="@string/cli_preset_title"
+        app2:iconSpaceReserved="false">
+
+        <Preference
+            android:key="cli_preset_pvp"
+            android:title="@string/cli_preset_pvp"
+            android:summary="@string/cli_preset_sum"
+            app2:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="cli_preset_survival"
+            android:title="@string/cli_preset_survival"
+            android:summary="@string/cli_preset_sum"
+            app2:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="cli_preset_balanced"
+            android:title="@string/cli_preset_balanced"
+            android:summary="@string/cli_preset_sum"
+            app2:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        style="@style/CliPreferenceCategory"
+        android:title="@string/cli_safe_mode_title"
+        app2:iconSpaceReserved="false">
+
+        <Preference
+            android:key="cli_safe_mode_disable"
+            android:title="@string/cli_safe_mode_title"
+            android:summary="@string/cli_safe_mode_sum"
+            app2:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="cli_safe_mode_enable"
+            android:title="@string/cli_safe_mode_restored"
+            android:summary="@string/cli_safe_mode_sum"
+            app2:iconSpaceReserved="false" />
+    </PreferenceCategory>
 </PreferenceScreen>

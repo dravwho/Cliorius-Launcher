@@ -127,6 +127,25 @@
             app2:iconSpaceReserved="false"
             />
 
+
+        <Preference
+            android:key="cli_backup_restore"
+            android:title="@string/cli_backup_title"
+            android:summary="@string/cli_backup_sum"
+            android:fragment="net.kdt.pojavlaunch.firefly.fragments.BackupRestoreFragment"
+            android:icon="@drawable/ic_menu_install_jar"
+            app2:iconSpaceReserved="false"
+            />
+
+        <Preference
+            android:key="cli_crash_viewer"
+            android:title="@string/cli_crash_title"
+            android:summary="@string/cli_crash_sum"
+            android:fragment="net.kdt.pojavlaunch.firefly.fragments.CrashViewerFragment"
+            android:icon="@drawable/ic_menu_news"
+            app2:iconSpaceReserved="false"
+            />
+
     </PreferenceCategory>
 
     <Preference

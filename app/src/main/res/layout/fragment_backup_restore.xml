@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_app"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/_14sdp"
+    android:paddingTop="@dimen/_12sdp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cli_backup_title"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/backup_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:textColor="@color/secondary_text"
+        android:textSize="@dimen/_11ssp" />
+
+    <com.kdt.mcgui.MineButton
+        android:id="@+id/backup_export"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_46sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/cli_play_button"
+        android:text="@string/cli_backup_export"
+        android:textAllCaps="false"
+        android:textColor="@color/accent_on_accent"
+        android:textSize="@dimen/_13ssp" />
+
+    <com.kdt.mcgui.MineButton
+        android:id="@+id/backup_import"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_46sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/cli_secondary_button"
+        android:text="@string/cli_backup_import"
+        android:textAllCaps="false"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_13ssp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:text="@string/cli_backup_hint"
+        android:textColor="@color/tertiary_text"
+        android:textSize="@dimen/_10ssp" />
+</LinearLayout>

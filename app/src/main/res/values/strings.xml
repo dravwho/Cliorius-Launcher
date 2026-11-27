@@ -751,4 +751,32 @@
     <string name="cli_crash_mod_advice">Crash menyebut mod. Buka Mod Manager dan nonaktifkan mod yang baru dipasang, lalu coba lagi.</string>
     <string name="cli_crash_generic_title">Crash tidak dikenali</string>
     <string name="cli_crash_generic_advice">Periksa log di atas. Coba turunkan resolusi, ganti renderer, atau bagikan log ke pengembang.</string>
+
+    <!-- Cliorius v8 -->
+    <string name="cli_mods_installed_deps">Installed: %1$s (+%2$d dependencies)</string>
+    <string name="cli_safe_mode_title">Safe mode (no mods)</string>
+    <string name="cli_safe_mode_sum">Launch once with all mods disabled to diagnose crashes</string>
+    <string name="cli_safe_mode_toast">Safe mode: all mods temporarily disabled</string>
+    <string name="cli_safe_mode_restored">Mods re-enabled</string>
+    <string name="cli_backup_title">Backup &amp; Restore</string>
+    <string name="cli_backup_sum">Export or import a full instance as .zip</string>
+    <string name="cli_backup_export">Export instance</string>
+    <string name="cli_backup_import">Import instance</string>
+    <string name="cli_backup_exporting">Exporting %1$s…</string>
+    <string name="cli_backup_done">Saved: %1$s</string>
+    <string name="cli_backup_importing">Importing %1$s…</string>
+    <string name="cli_backup_imported">Imported: %1$s</string>
+    <string name="cli_backup_no_instance">No instance selected</string>
+    <string name="cli_preset_title">Performance presets</string>
+    <string name="cli_preset_sum">One-tap tuning for the game type you play</string>
+    <string name="cli_preset_pvp">PvP / 1.8 (max FPS)</string>
+    <string name="cli_preset_survival">Survival / 1.21 (stable)</string>
+    <string name="cli_preset_balanced">Balanced (default)</string>
+    <string name="cli_preset_applied">Preset applied: %1$s</string>
+    <string name="cli_preset_detail">RAM %1$d MB · %2$s · FPS %3$s</string>
+    <string name="cli_preset_fps_unlimited">unlimited</string>
+
+    <string name="cli_backup_status">Instance: %1$s · %2$s MB</string>
+    <string name="cli_backup_failed">Backup failed. Check storage permission.</string>
+    <string name="cli_backup_hint">Export saves the whole instance (version, mods, config, worlds) into Downloads/Cliorius. Import restores such a .zip into the active instance.</string>
 </resources>

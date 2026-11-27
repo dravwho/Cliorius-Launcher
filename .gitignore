@@ -37,3 +37,9 @@ app/src/main/assets/jre-*
 
 # Local configuration file (sdk path, etc)
 local.properties
+
+# Editor/agent backup files
+*.bak-nexhost
+*.bak
+*.orig
+*.rej

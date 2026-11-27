@@ -241,11 +241,15 @@ class ModManagerFragment : Fragment(R.layout.fragment_mod_manager) {
         // Cliorius: no confirmation dialog — click "Unduh" = download immediately
         Toast.makeText(requireContext(), getString(R.string.cli_mods_downloading, entry.title), Toast.LENGTH_SHORT).show()
         lifecycleScope.launch(Dispatchers.IO) {
-            val result = runCatching { downloadLatestMod(entry.slug) }
+            val result = runCatching { downloadWithDependencies(entry.slug) }
             withContext(kotlinx.coroutines.Dispatchers.Main) {
-                result.onSuccess { file ->
-                    Toast.makeText(requireContext(),
-                        getString(R.string.cli_mods_installed, file.name), Toast.LENGTH_LONG).show()
+                result.onSuccess { files ->
+                    val main = files.firstOrNull()?.name ?: entry.title
+                    val extra = files.size - 1
+                    val msg = if (extra > 0)
+                        getString(R.string.cli_mods_installed_deps, main, extra)
+                    else getString(R.string.cli_mods_installed, main)
+                    Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
                     reload()
                 }.onFailure { error ->
                     Tools.showError(requireContext(), error)
@@ -254,26 +258,81 @@ class ModManagerFragment : Fragment(R.layout.fragment_mod_manager) {
         }
     }
 
-    private fun downloadLatestMod(slug: String): File {
+    /**
+     * Cliorius v8: unduh mod + seluruh dependensi wajibnya secara rekursif.
+     * Modrinth menyediakan field `dependencies` berisi project_id yang dibutuhkan.
+     * Tanpa ini banyak mod gagal jalan (Fabric API, Cloth Config, dsb. tidak terpasang).
+     */
+    private fun downloadWithDependencies(rootSlug: String): List<File> {
+        val installed = mutableListOf<File>()
+        val visited = mutableSetOf<String>()
+        val queue = ArrayDeque<String>()
+        queue.add(rootSlug)
+        while (queue.isNotEmpty()) {
+            val slug = queue.removeFirst()
+            if (!visited.add(slug)) continue
+            val result = downloadLatestMod(slug) ?: continue
+            installed.add(result.file)
+            result.dependencyProjectIds.forEach { depId ->
+                val depSlug = projectIdToSlug(depId) ?: return@forEach
+                if (depSlug !in visited) queue.add(depSlug)
+            }
+        }
+        if (installed.isEmpty()) throw java.io.IOException("No release found for $rootSlug")
+        return installed
+    }
+
+    private data class DownloadResult(val file: File, val dependencyProjectIds: List<String>)
+
+    /** Cache project_id -> slug agar tidak query berulang. */
+    private val projectSlugCache = ConcurrentHashMap<String, String>()
+
+    private fun projectIdToSlug(projectId: String): String? {
+        projectSlugCache[projectId]?.let { return it }
+        return runCatching {
+            val conn = URL("https://api.modrinth.com/v2/project/$projectId").openConnection() as HttpURLConnection
+            conn.setRequestProperty("User-Agent", "ClioriusLauncher/1.0")
+            conn.connectTimeout = 8000; conn.readTimeout = 10000
+            val obj = com.google.gson.JsonParser.parseString(
+                conn.inputStream.bufferedReader().readText()
+            ).asJsonObject
+            val slug = obj.get("slug")?.asString
+            if (slug != null) projectSlugCache[projectId] = slug
+            slug
+        }.getOrNull()
+    }
+
+    private fun downloadLatestMod(slug: String): DownloadResult? {
         val mcVersion = PgwVersionRepository.current()?.id?.let { id ->
             Regex("^\\d+\\.\\d+(\\.\\d+)?").find(id)?.value
         } ?: ""
         val conn = URL("https://api.modrinth.com/v2/project/$slug/version").openConnection() as HttpURLConnection
         conn.setRequestProperty("User-Agent", "ClioriusLauncher/1.0")
+        conn.connectTimeout = 10000; conn.readTimeout = 15000
         val versions = com.google.gson.JsonParser.parseString(conn.inputStream.bufferedReader().readText()).asJsonArray
         val chosen = versions.firstOrNull { el ->
             val o = el.asJsonObject
             val gameVersions = o.get("game_versions")?.asJsonArray?.map { it.asString }.orEmpty()
             mcVersion.isBlank() || mcVersion in gameVersions
-        } ?: versions.firstOrNull() ?: throw java.io.IOException("No release found for $slug")
-        val files = chosen.asJsonObject.getAsJsonArray("files")
+        } ?: versions.firstOrNull() ?: return null
+        val chosenObj = chosen.asJsonObject
+        val files = chosenObj.getAsJsonArray("files")
         val file = files.firstOrNull { it.asJsonObject.get("primary")?.asBoolean == true }?.asJsonObject
-            ?: files.firstOrNull()?.asJsonObject ?: throw java.io.IOException("No file in release")
+            ?: files.firstOrNull()?.asJsonObject ?: return null
         val url = file.get("url").asString
         val fileName = file.get("filename").asString
         val dest = File(modsDir(), fileName)
-        Tools.downloadFile(url, dest.absolutePath)
-        return dest
+        if (!dest.exists()) Tools.downloadFile(url, dest.absolutePath)
+
+        // Kumpulkan dependensi wajib (dependency_type == "required")
+        val deps = mutableListOf<String>()
+        chosenObj.getAsJsonArray("dependencies")?.forEach { d ->
+            val o = d.asJsonObject
+            val type = o.get("dependency_type")?.asString
+            val pid = o.get("project_id")?.asString
+            if (type == "required" && pid != null) deps.add(pid)
+        }
+        return DownloadResult(dest, deps)
     }
 
 

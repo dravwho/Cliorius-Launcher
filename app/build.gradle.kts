@@ -28,7 +28,7 @@ if (file("${rootDir}/local.properties").exists()) {
 }
 
 val pwd = System.getenv("VERA_KEYSTORE_PASSWORD") ?: localProperty?.getProperty("pwd")
-val baseVersionCode = 100000000 + (System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull() ?: localProperty?.getProperty("BASE_VERSION_CODE")?.toIntOrNull() ?: 0)
+val baseVersionCode = 8000
 val curseForgeApiKey = System.getenv("CURSEFORGE_API_KEY") ?: localProperty?.getProperty("CURSEFORGE_API_KEY")
 
 configure<StringFogExtension> {
@@ -183,7 +183,7 @@ android {
         applicationId = appPackageName
         minSdk = 26
         targetSdk = 28
-        versionCode = 7000
+        versionCode = 8000
         versionName = versionName()
     }
 
