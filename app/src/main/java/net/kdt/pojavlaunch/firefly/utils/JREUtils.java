@@ -647,8 +647,19 @@ public class JREUtils {
             userArgs.add("-Dorg.lwjgl.system.allocator=system");
         }
         //Add automatically generated args
-        userArgs.add("-Xms" + LauncherPreferences.PREF_RAM_ALLOCATION + "M");
-        userArgs.add("-Xmx" + LauncherPreferences.PREF_RAM_ALLOCATION + "M");
+        // Per-version RAM override (0 = use the global launcher setting).
+        int ramMb = LauncherPreferences.PREF_RAM_ALLOCATION;
+        try {
+            net.kdt.pojavlaunch.firefly.version.PgwInstalledVersion installed =
+                    net.kdt.pojavlaunch.firefly.version.PgwVersionRepository.INSTANCE.current();
+            if (installed != null && installed.getConfig().getRamAllocation() > 0) {
+                ramMb = installed.getConfig().getRamAllocation();
+            }
+        } catch (Throwable ignored) {
+        }
+        final int ramMbFinal = ramMb;
+        userArgs.add("-Xms" + ramMbFinal + "M");
+        userArgs.add("-Xmx" + ramMbFinal + "M");
         userArgs.add("-XX:ActiveProcessorCount=" + java.lang.Runtime.getRuntime().availableProcessors());
         if (LOCAL_RENDERER != null) {
             userArgs.add("-Dorg.lwjgl.opengl.renderertag=" + LOCAL_RENDERER);
@@ -660,7 +671,7 @@ public class JREUtils {
         if (lwjglNativeDirectory == null) userArgs.add("-Dorg.lwjgl.freetype.libname=" + NATIVE_LIB_DIR + "/libfreetype.so");
 
         userArgs.addAll(JVMArgs);
-        activity.runOnUiThread(() -> Toast(activity, activity.getString(R.string.autoram_info_msg, LauncherPreferences.PREF_RAM_ALLOCATION)));
+        activity.runOnUiThread(() -> Toast(activity, activity.getString(R.string.autoram_info_msg, ramMbFinal)));
         System.out.println(JVMArgs);
 
         JREUtils.setupExitMethod(activity.getApplication());
