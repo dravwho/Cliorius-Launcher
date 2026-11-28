@@ -671,11 +671,32 @@ public final class Tools {
     }
 
     public static String printToString(Throwable throwable) {
-        StringWriter stringWriter = new StringWriter();
-        PrintWriter printWriter = new PrintWriter(stringWriter);
-        throwable.printStackTrace(printWriter);
-        printWriter.close();
-        return stringWriter.toString();
+        if (throwable == null) return "<null>";
+        // A Throwable that travelled through Intent.putExtra/getSerializable can come back with a
+        // null entry inside its suppressed-exception array. Throwable.printStackTrace() then NPEs
+        // inside printEnclosedStackTrace, which used to crash FatalErrorActivity itself and hide
+        // the real crash. Always degrade gracefully instead.
+        try {
+            StringWriter stringWriter = new StringWriter();
+            PrintWriter printWriter = new PrintWriter(stringWriter);
+            throwable.printStackTrace(printWriter);
+            printWriter.close();
+            String rendered = stringWriter.toString();
+            if (rendered != null && !rendered.isEmpty()) return rendered;
+        } catch (Throwable ignored) {
+            // fall through to the safe path below
+        }
+        try {
+            String fallback = Log.getStackTraceString(throwable);
+            if (fallback != null && !fallback.isEmpty()) return fallback;
+        } catch (Throwable ignored) {
+            // fall through again
+        }
+        try {
+            return throwable.getClass().getName() + ": " + throwable.getMessage();
+        } catch (Throwable ignored) {
+            return "Unable to render stack trace";
+        }
     }
 
     public static void showError(Context ctx, Throwable e) {

@@ -63,8 +63,23 @@ public class PojavApplication extends Application {
                 Log.e(CRASH_REPORT_TAG, " - Exception attempt saving crash stack trace:", throwable);
                 Log.e(CRASH_REPORT_TAG, " - The crash stack trace was:", th);
             }
-            th.printStackTrace();
-            FatalErrorActivity.showError(PojavApplication.this, crashFile.getAbsolutePath(), storagePermAllowed, th);
+            // Render the trace once, defensively: a Throwable can carry null entries in its
+            // suppressed-exception array, and printStackTrace() then throws a NullPointerException
+            // that would replace the real crash with a useless one.
+            String renderedTrace;
+            try {
+                renderedTrace = Tools.printToString(th);
+            } catch (Throwable renderFailure) {
+                renderedTrace = "Unable to render stack trace: " + renderFailure;
+            }
+            try {
+                Log.e(CRASH_REPORT_TAG, renderedTrace);
+            } catch (Throwable ignored) {
+            }
+            try {
+                FatalErrorActivity.showError(PojavApplication.this, crashFile.getAbsolutePath(), storagePermAllowed, renderedTrace);
+            } catch (Throwable ignored) {
+            }
             MainActivity.fullyExit();
         });
 
