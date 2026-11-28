@@ -129,6 +129,13 @@
 
 
         <Preference
+            android:key="cli_world_manager"
+            android:title="@string/cli_world_title"
+            android:summary="@string/cli_world_sum"
+            android:fragment="net.kdt.pojavlaunch.firefly.fragments.WorldManagerFragment"
+            app2:iconSpaceReserved="false" />
+
+        <Preference
             android:key="cli_backup_restore"
             android:title="@string/cli_backup_title"
             android:summary="@string/cli_backup_sum"

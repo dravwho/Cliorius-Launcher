@@ -726,7 +726,6 @@
     <string name="cli_lang_sum">Ubah bahasa seluruh tampilan launcher</string>
     <string name="cli_version_ram_label">RAM for this version (0 = use global)</string>
     <string name="cli_version_ram_value">%1$d MB</string>
-    <string name="base_version_code">7000</string>
     <string name="cli_tab_mod">Mod</string>
     <string name="cli_tab_shader">Shader</string>
     <string name="cli_tab_resourcepack">Resource Pack</string>
@@ -779,4 +778,40 @@
     <string name="cli_backup_status">Instance: %1$s · %2$s MB</string>
     <string name="cli_backup_failed">Backup failed. Check storage permission.</string>
     <string name="cli_backup_hint">Export saves the whole instance (version, mods, config, worlds) into Downloads/Cliorius. Import restores such a .zip into the active instance.</string>
+
+    <!-- v9: modpack importer -->
+    <string name="cli_modpack_title">Import modpack (.mrpack)</string>
+    <string name="cli_modpack_sum">Install a Modrinth modpack with all its mods</string>
+    <string name="cli_modpack_import">Import .mrpack</string>
+    <string name="cli_modpack_importing">Importing modpack…</string>
+    <string name="cli_modpack_progress">%1$d / %2$d · %3$s</string>
+    <string name="cli_modpack_done">Modpack installed: %1$s (%2$d files, %3$d overrides)</string>
+    <string name="cli_modpack_failed">Modpack import failed</string>
+    <string name="cli_modpack_hint">A .mrpack is a Modrinth modpack. Its mods are downloaded automatically into the active instance.</string>
+
+    <!-- v9: world manager -->
+    <string name="cli_world_title">World manager</string>
+    <string name="cli_world_sum">Back up, inspect or delete your worlds</string>
+    <string name="cli_world_refresh">Refresh</string>
+    <string name="cli_world_status">%1$d world(s) found</string>
+    <string name="cli_world_empty">No worlds yet. Start a game and create one.</string>
+    <string name="cli_world_item_meta">%1$s MB · last played %2$s</string>
+    <string name="cli_world_backup">Back up world</string>
+    <string name="cli_world_backing_up">Backing up %1$s…</string>
+    <string name="cli_world_backup_done">Saved: %1$s</string>
+    <string name="cli_world_backup_failed">Backup failed</string>
+    <string name="cli_world_delete_title">Delete %1$s?</string>
+    <string name="cli_world_delete_msg">This permanently removes the world folder. Back it up first if unsure.</string>
+    <string name="cli_world_delete">Delete</string>
+
+    <!-- v9: mod health -->
+    <string name="cli_mods_check_updates">Check updates</string>
+    <string name="cli_mods_updates_found">%1$d update(s) available</string>
+    <string name="cli_mods_no_updates">All mods are up to date</string>
+    <string name="cli_mods_update_all">Update all</string>
+    <string name="cli_mods_updating">Updating %1$s…</string>
+    <string name="cli_mods_updated">Updated: %1$s</string>
+    <string name="cli_mods_conflicts">%1$d conflict(s) detected</string>
+    <string name="cli_mods_no_conflicts">No conflicts detected</string>
+    <string name="cli_mods_health_title">Mod health</string>
 </resources>

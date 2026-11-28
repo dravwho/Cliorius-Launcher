@@ -129,6 +129,39 @@
         android:textColor="@color/accent_on_accent"
         android:textSize="@dimen/_12ssp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:orientation="horizontal">
+
+        <com.kdt.mcgui.MineButton
+            android:id="@+id/mods_check_updates"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_weight="1"
+            android:background="@drawable/cli_secondary_button"
+            android:text="@string/cli_mods_check_updates"
+            android:textAllCaps="false"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_11ssp" />
+
+        <Space
+            android:layout_width="@dimen/_8sdp"
+            android:layout_height="match_parent" />
+
+        <com.kdt.mcgui.MineButton
+            android:id="@+id/mods_health"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_weight="1"
+            android:background="@drawable/cli_secondary_button"
+            android:text="@string/cli_mods_health_title"
+            android:textAllCaps="false"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_11ssp" />
+    </LinearLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

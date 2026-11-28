@@ -24,6 +24,7 @@ import net.kdt.pojavlaunch.firefly.Tools
 import net.kdt.pojavlaunch.firefly.prefs.LauncherPreferences
 import net.kdt.pojavlaunch.firefly.version.PgwVersionRepository
 import net.kdt.pojavlaunch.firefly.version.VersionIsolation
+import net.kdt.pojavlaunch.firefly.utils.ModpackImporter
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -44,6 +45,14 @@ class BackupRestoreFragment : Fragment(R.layout.fragment_backup_restore) {
         }
     }
 
+    private val modpackLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            result.data?.data?.let { uri -> doImportModpack(uri) }
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         status = view.findViewById(R.id.backup_status)
         view.findViewById<View>(R.id.backup_export).setOnClickListener { doExport() }
@@ -54,7 +63,47 @@ class BackupRestoreFragment : Fragment(R.layout.fragment_backup_restore) {
             }
             importLauncher.launch(intent)
         }
+        view.findViewById<View>(R.id.backup_import_modpack)?.setOnClickListener {
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                addCategory(Intent.CATEGORY_OPENABLE)
+                type = "*/*"
+            }
+            modpackLauncher.launch(intent)
+        }
         updateStatus()
+    }
+
+    /**
+     * Cliorius v9: import a Modrinth .mrpack into the active instance.
+     * The pack's mods are downloaded at their declared relative paths and the
+     * overrides folders are copied on top, per the official format spec.
+     */
+    private fun doImportModpack(uri: Uri) {
+        val target = instanceDir()
+        Toast.makeText(requireContext(), R.string.cli_modpack_importing, Toast.LENGTH_SHORT).show()
+        lifecycleScope.launch {
+            val result = withContext(Dispatchers.IO) {
+                runCatching {
+                    val cache = File(requireContext().cacheDir, "import.mrpack")
+                    requireContext().contentResolver.openInputStream(uri)?.use { input ->
+                        cache.outputStream().use { output -> input.copyTo(output) }
+                    } ?: throw java.io.IOException("Cannot read selected file")
+                    ModpackImporter.import(cache, target) { p ->
+                        // progress is reported on the IO thread; UI toast is best-effort
+                    }.also { cache.delete() }
+                }
+            }
+            result.onSuccess { r ->
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.cli_modpack_done, r.name, r.filesInstalled, r.overridesCopied),
+                    Toast.LENGTH_LONG
+                ).show()
+            }.onFailure {
+                Toast.makeText(requireContext(), R.string.cli_modpack_failed, Toast.LENGTH_LONG).show()
+            }
+            updateStatus()
+        }
     }
 
     private fun instanceDir(): File {

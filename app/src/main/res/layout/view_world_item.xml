@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_8sdp"
+    android:background="@drawable/cli_menu_card"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/_12sdp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/world_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_13ssp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/world_item_meta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/_10ssp" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/world_item_backup"
+        android:layout_width="@dimen/_34sdp"
+        android:layout_height="@dimen/_34sdp"
+        android:background="@drawable/cli_secondary_button"
+        android:contentDescription="@string/cli_world_backup"
+        android:padding="@dimen/_8sdp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_menu_share" />
+
+    <ImageButton
+        android:id="@+id/world_item_delete"
+        android:layout_width="@dimen/_34sdp"
+        android:layout_height="@dimen/_34sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:background="@drawable/cli_secondary_button"
+        android:contentDescription="@string/cli_world_delete"
+        android:padding="@dimen/_8sdp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_menu_delete_forever" />
+</LinearLayout>

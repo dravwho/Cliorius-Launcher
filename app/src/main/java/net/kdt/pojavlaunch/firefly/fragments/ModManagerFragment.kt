@@ -31,6 +31,7 @@ import net.kdt.pojavlaunch.firefly.version.PgwVersionRepository
 import net.kdt.pojavlaunch.firefly.version.VersionIsolation
 import net.kdt.pojavlaunch.firefly.version.ModrinthApiCatalog
 import net.kdt.pojavlaunch.firefly.version.ModrinthApiVersion
+import net.kdt.pojavlaunch.firefly.utils.ModHealth
 import com.movtery.feature.mod.parser.ModParser
 import com.movtery.feature.mod.parser.ModInfo
 import java.io.File
@@ -114,7 +115,89 @@ class ModManagerFragment : Fragment(R.layout.fragment_mod_manager) {
             override fun beforeTextChanged(c: CharSequence?, s: Int, b: Int, a: Int) {}
             override fun onTextChanged(c: CharSequence?, s: Int, b: Int, a: Int) {}
         })
+        view.findViewById<View>(R.id.mods_check_updates)?.setOnClickListener { checkUpdates() }
+        view.findViewById<View>(R.id.mods_health)?.setOnClickListener { showHealth() }
         reload()
+    }
+
+    /** Cliorius v9: resolve every installed jar against Modrinth and offer updates. */
+    private fun checkUpdates() {
+        val ctx = requireContext()
+        Toast.makeText(ctx, R.string.cli_mods_check_updates, Toast.LENGTH_SHORT).show()
+        lifecycleScope.launch {
+            val mcVersion = currentMinecraftVersion()
+            val mods = withContext(Dispatchers.IO) { parseModsBlocking() }
+            val updates = withContext(Dispatchers.IO) {
+                mods.mapNotNull { mod -> runCatching { ModHealth.checkUpdate(mod, mcVersion) }.getOrNull() }
+            }
+            if (updates.isEmpty()) {
+                Toast.makeText(ctx, R.string.cli_mods_no_updates, Toast.LENGTH_LONG).show()
+                return@launch
+            }
+            val labels = updates.map { "${it.modName}: ${it.installedVersion} -> ${it.latestVersion}" }
+            AlertDialog.Builder(ctx)
+                .setTitle(getString(R.string.cli_mods_updates_found, updates.size))
+                .setItems(labels.toTypedArray()) { _, _ -> }
+                .setPositiveButton(R.string.cli_mods_update_all) { _, _ -> applyUpdates(updates) }
+                .setNegativeButton(android.R.string.cancel, null)
+                .show()
+        }
+    }
+
+    private fun applyUpdates(updates: List<ModHealth.UpdateInfo>) {
+        val ctx = requireContext()
+        lifecycleScope.launch {
+            var done = 0
+            withContext(Dispatchers.IO) {
+                updates.forEach { u ->
+                    runCatching {
+                        val dest = File(modsDir(), u.fileName)
+                        Tools.downloadFile(u.downloadUrl, dest.absolutePath)
+                        done++
+                    }
+                }
+            }
+            Toast.makeText(ctx, getString(R.string.cli_mods_updated, "$done"), Toast.LENGTH_LONG).show()
+            reload()
+        }
+    }
+
+    /** Cliorius v9: duplicate ids, wrong loader, missing dependencies. */
+    private fun showHealth() {
+        val ctx = requireContext()
+        lifecycleScope.launch {
+            val mods = withContext(Dispatchers.IO) { parseModsBlocking() }
+            val loader = detectLoader()
+            val conflicts = withContext(Dispatchers.IO) { ModHealth.detectConflicts(mods, loader) }
+            val title = if (conflicts.isEmpty())
+                getString(R.string.cli_mods_no_conflicts)
+            else getString(R.string.cli_mods_conflicts, conflicts.size)
+            val body = if (conflicts.isEmpty()) "" else conflicts.joinToString("\n\n") {
+                val tag = if (it.severity == ModHealth.Severity.ERROR) "[!]" else "[~]"
+                "$tag ${it.title}\n${it.detail}"
+            }
+            AlertDialog.Builder(ctx)
+                .setTitle(title)
+                .setMessage(body.ifBlank { getString(R.string.cli_mods_no_conflicts) })
+                .setPositiveButton(android.R.string.ok, null)
+                .show()
+        }
+    }
+
+    private fun currentMinecraftVersion(): String =
+        PgwVersionRepository.current()?.id?.let { id ->
+            Regex("^\\d+\\.\\d+(\\.\\d+)?").find(id)?.value
+        } ?: ""
+
+    private fun detectLoader(): String {
+        val id = PgwVersionRepository.current()?.id?.lowercase() ?: return "vanilla"
+        return when {
+            id.contains("quilt") -> "quilt"
+            id.contains("fabric") -> "fabric"
+            id.contains("neoforge") -> "neoforge"
+            id.contains("forge") -> "forge"
+            else -> "vanilla"
+        }
     }
 
     private fun reload() {

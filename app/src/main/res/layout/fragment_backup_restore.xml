@@ -45,6 +45,18 @@
         android:textColor="@color/primary_text"
         android:textSize="@dimen/_13ssp" />
 
+
+    <com.kdt.mcgui.MineButton
+        android:id="@+id/backup_import_modpack"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_46sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/cli_secondary_button"
+        android:text="@string/cli_modpack_import"
+        android:textAllCaps="false"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_13ssp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
